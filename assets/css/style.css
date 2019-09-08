@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    text-align: center;
+    font-family: "Helvetica", sans-serif;
+    background-color: #f4f4f4;
+    width: 100%;
+    margin: 0 auto;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+}
+.clr {
+    clear: both;
+}
+.mess {
+    color: green;
+    padding: 10px;
+}
+
+/* HEADER STYLES */
+header {
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 5px solid #fff;
+    background: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+header h2 {
+    border-bottom: 2px solid #ccc;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+header nav ul li {
+    display: inline-block;
+    list-style: none;
+}
+header nav ul li:hover {
+    border-bottom: 2px solid #ccc;
+}
+header nav ul li a {
+    color: #ccc;
+    padding: 20px 10px;
+}
+
+/* Content Styles */
+.container {
+    width: 95%;
+    margin: 120px auto 80px auto;
+    text-align: left;
+    position: relative;
+}
+.container .left {
+    width: 70%;
+    float: left;
+    margin: 0 auto;
+    border-right: 2px solid #ccc;
+    padding: 0 20px;
+}
+.container .right {
+    width: 30%;
+    float: left;
+    margin: 0 auto;
+    padding: 0 20px;
+    right: 10px;
+    position: fixed;
+    max-height: 500px;
+    overflow: auto;
+}
+.container .left h1, .container .right h2 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px auto;
+}
+
+/* Blog Post Styles */
+#posts .well {
+    padding: 50px 30px;
+    margin-bottom: 20px;
+    background: #fff;
+    border: 3px solid #ccc;
+}
+#posts .well h1, #posts .well h2 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: left;
+    margin: 5px auto;
+}
+#posts .well a {
+    color: #0f273bcb;
+}
+#posts small {
+    margin-bottom: 10px;
+}
+#posts .down {
+    padding-bottom: 20px;
+}
+#posts .down .lft {
+    float: left;
+}
+#posts .down .rgt {
+    float: right;
+}
+#posts p {
+    margin: 20px auto;
+    line-height: 1.8;
+}
+.down2 .lft {
+    float: left;
+    color: rgba(59, 209, 122, 0.788);
+}
+.down2 .rgt {
+    float: right;
+    color: rgba(170, 49, 49, 0.842);
+}
+.down2 .lft a {
+    background: rgba(59, 209, 122, 0.788);
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 15px;
+}
+.down2 .rgt a {
+    background: rgba(170, 49, 49, 0.842);
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.down2 .rgt button {
+    background: red;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 15px;
+    width: 100%;
+    margin: 0;
+}
+
+/* Category List Styles */
+#categ p {
+    padding: 8px;
+    font-size: 1.3em;
+    margin: 5px auto;
+}
+#categ p:hover {
+    color: #555;
+}
+#categ p:nth-child(odd) {
+    background-color: rgb(230, 224, 224);
+}
+#categ p:nth-child(even) {
+    background-color: #fff;
+}
+
+/* Posts Title List Styles */
+#postLists p {
+    padding: 8px;
+    font-size: 1.3em;
+    margin: 5px auto;
+}
+#postLists p:hover {
+    color: #555;
+}
+#postLists p:nth-child(odd) {
+    background-color: rgb(236, 234, 234);
+}
+#postLists p:nth-child(even) {
+    background-color: #fff;
+}
+
+/* FORM STYLES */
+input, textarea, select {
+    width: 80%;
+    margin: 10px auto;
+    padding: 5px 10px;
+}
+button, input[type='submit'] {
+    color: white;
+    background-color: #4791d0;
+    border-radius: 5px;
+    border: 1px solid #4791d0;
+    padding: 10px 20px;
+    width: 80%;
+    margin: 10px auto;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0F5897;
+    border: 1px solid #0F5897;
+}
+
+/* FOOTER STYLES */
+footer {
+    padding: 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    width: 100%;
+    z-index: 100;
+}
+@media all and (max-width: 780px) {
+    .container .left {
+        width: 100%;
+        float: none;
+    }
+    .container .right {
+        width: 100%;
+        float: none;
+        position: relative;
+    }
+}
