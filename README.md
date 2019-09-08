@@ -5,6 +5,9 @@
 Import the myblog.sql file, change the params in the config/Database.php file to your own
 
 ## App Info
+This app runs locally on port:500.
+To use it, run - 
+  php -S localhost:5000
 
 ### Author
 Odinaka Joy
@@ -15,3 +18,4 @@ Odinaka Joy
 
 ### License
 This project is licensed under the MIT License
+Feel free to drop recommendations. Thank you
