@@ -15,7 +15,7 @@
     }
 
     // Get categories
-    public function read() {
+    public function getCategories() {
       // Create query
       $query = 'SELECT
         id,
