@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <header>
-      <h2>A SIMPLE PHP REST API DEMO</h2>
-      <nav>
-        <ul>
+    <header class="header">
+      <div class="heading">
+        <h1>A SIMPLE PHP REST API DEMO</h1>
+      </div>
+      <nav class="nav">
+        <ul class="links">
           <li><a href="./">Home</a></li>
           <li><a href="./addPost.php">Add Post</a></li>
           <li><a href="./addCategory.php">Add Category</a></li>
@@ -19,34 +21,20 @@
       </nav>
     </header>
 
-  <div class="container">
-      <div class="left">
-        <div id="posts"><br>
-          <small>Tag: <em><?php echo $category_name; ?></em></small>
-          <h1><?php echo $title; ?></h1><br>
-          <div class="down">
-            <span class="lft"><strong>Author: </strong><?php echo $author; ?></span>
-            <span class="rgt"><strong>Date: </strong><?php echo $created_at; ?></span>
-          </div><br><br>
-          <div class="clr"></div>
-          <p><?php echo $body; ?></p><br><br>
-          <div class="down2">
-            <span class="lft"><strong><a href="./updatePost.php?id=<?php echo $id; ?>"> EDIT </a></strong></span>
-            <span class="rgt"><strong><a onclick="myFunction(this.id)" id='<?php echo $id; ?>'> DELETE </a></strong></span></div>
-          </div>
-          <div class="clr"></div>
-        </div>
-
-      <div class="right">
+    <main class="container">
+      <section class="posts">
+        <h2>Recent Post</h2>
+        <div id="loadPosts"></div>
+      </section>
+      <section class="categories">
         <h2>Categories</h2> 
-        <div id="categ"></div>
-        <button style="width: 100%;"><a href="addCategory.php"> Add Category </a></button>
-      </div>
-      <div class="clr"></div>
-    </div>
-
-    <footer>
-      <h5>Copyright &copy; 2019. Designed By odinaka-joy</h5>
+        <div id="loadCategories"></div>
+        <button><a href="addCategory.php"> Add Category </a></button>
+      </section>
+    </main>
+    
+    <footer class="footer">
+      <small>Copyright &copy; 2019. Designed By odinaka-joy</small>
     </footer>
     <script src="./assets/js/main.js"></script>
   </body>

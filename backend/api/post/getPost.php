@@ -17,7 +17,7 @@
   $id = $_GET["id"];
 
   // Get post
-  $post->read_single();
+  $post->getPost();
 
   // Create array
   $post_arr = array(
