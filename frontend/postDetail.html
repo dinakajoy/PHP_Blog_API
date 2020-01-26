@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PHP REST API Demo | Details</title>
+    <title>PHP REST API Demo | Post Detail</title>
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
@@ -22,20 +22,19 @@
     </header>
 
     <main class="container">
-      <section class="posts">
-        <h2>Recent Post</h2>
-        <div id="loadPosts"></div>
+      <section class="post">
+        <div id="loadPost" class="post"></div>
       </section>
       <section class="categories">
         <h2>Categories</h2> 
-        <div id="loadCategories"></div>
-        <button><a href="addCategory.php"> Add Category </a></button>
+        <div id="loadCategories" class="categories"></div>
+        <a class="btn" href="addCategory.php"> Add Category </a>
       </section>
     </main>
     
     <footer class="footer">
       <small>Copyright &copy; 2019. Designed By odinaka-joy</small>
     </footer>
-    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/postDetail.js"></script>
   </body>
 </html>

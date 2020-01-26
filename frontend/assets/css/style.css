@@ -82,6 +82,9 @@ ul {
 .post {
     margin: 20px 0;
 }
+.post a {
+    color: #333;
+}
 
 /* FOOTER STYLES */
 .footer {
