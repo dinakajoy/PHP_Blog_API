@@ -7,23 +7,18 @@
 
   include_once '../../config/Database.php';
   include_once '../../models/Post.php';
+  $post = new Post();
 
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
-
-  // Instantiate blog post object
-  $post = new Post($db);
-
-  $post->title = $_POST['title'];
-  $post->body = $_POST['body'];
-  $post->author = $_POST['author'];
-  $post->category_id = $_POST['category_id'];
-
-  $post->id = $_POST["id"];
+  // Get raw posted data
+  $data = json_decode(file_get_contents("php://input"));
+  $id = isset($_GET['id']) ? $_GET['id'] : die();
+  $title = $data->title;
+  $body = $data->body;
+  $author = $data->author;
+  $category_id = $data->category_id;
 
   // Update post
-  if($post->update()) {
+  if($post->updatePost($category_id, $title, $body, $author, $id)) {
     echo json_encode(
       array('message' => 'Post Updated')
     );
@@ -32,4 +27,3 @@
       array('message' => 'Post Not Updated')
     );
   }
-

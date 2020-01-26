@@ -1,14 +1,6 @@
 <?php
-  class Category {
-    // DB Stuff
-    private $conn;
+  class Category extends DBConnection {
     private $table = 'categories';
-    public $id;
-    public $name;
-    public $created_at;
-    public function __construct($db) {
-      $this->conn = $db;
-    }
 
     // Get categories
     public function getCategories() {
@@ -20,13 +12,17 @@
         ' . $this->table . '
       ORDER BY
         created_at DESC';
-      $stmt = $this->conn->prepare($query);
-      $stmt->execute();
-      return $stmt;
+      $stmt = $this->connectToDB()->prepare($query);
+      if($stmt->execute()) {
+        return $stmt;
+      }
+        // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+      return false;
     }
 
     // Get Single Category
-  public function getCategory() {
+  public function getCategory($id) {
     $query = 'SELECT
           id,
           name
@@ -34,23 +30,24 @@
           ' . $this->table . '
       WHERE id = ?
       LIMIT 0,1';
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(1, $this->id);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $this->id = $row['id'];
-    $this->name = $row['name'];
+    $stmt = $this->connectToDB()->prepare($query);
+    $stmt->bindParam(1, $id);
+    if($stmt->execute()) {
+      return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+      // Print error if something goes wrong
+    printf("Error: %s.\n", $stmt->error);
+    return false;
   }
 
   // Create Category
-  public function createCategory() {
+  public function createCategory($name) {
     $query = 'INSERT INTO ' .
-      $this->table . '
-    SET
-      name = :name';
-    $stmt = $this->conn->prepare($query);
-    $this->name = htmlspecialchars(strip_tags($this->name));
-    $stmt-> bindParam(':name', $this->name);
+      $this->table . '(name)
+      VALUES (:name)';
+    $stmt = $this->connectToDB()->prepare($query);
+    $validated_name = htmlspecialchars(strip_tags($name));
+    $stmt-> bindParam(':name', $validated_name);
     if($stmt->execute()) {
       return true;
     }
@@ -59,18 +56,18 @@
   }
 
   // Update Category
-  public function updateCategory() {
+  public function updateCategory($name, $id) {
     $query = 'UPDATE ' .
-      $this->table . '
-    SET
-      name = :name
-      WHERE
-      id = :id';
-    $stmt = $this->conn->prepare($query);
-    $this->name = htmlspecialchars(strip_tags($this->name));
-    $this->id = htmlspecialchars(strip_tags($this->id));
-    $stmt-> bindParam(':name', $this->name);
-    $stmt-> bindParam(':id', $this->id);
+        $this->table . '
+      SET
+        name = :name
+        WHERE
+        id = :id';
+    $stmt = $this->connectToDB()->prepare($query);
+    $validated_name = htmlspecialchars(strip_tags($name));
+    $validated_id = htmlspecialchars(strip_tags($id));
+    $stmt-> bindParam(':name', $validated_name);
+    $stmt-> bindParam(':id', $validated_id);
     if($stmt->execute()) {
       return true;
     }
@@ -79,11 +76,11 @@
   }
 
   // Delete Category
-  public function deleteCategory() {
+  public function deleteCategory($id) {
     $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
-    $stmt = $this->conn->prepare($query);
-    $this->id = htmlspecialchars(strip_tags($this->id));
-    $stmt-> bindParam(':id', $this->id);
+    $stmt = $this->connectToDB()->prepare($query);
+    $validated_id = htmlspecialchars(strip_tags($id));
+    $stmt-> bindParam(':id', $validated_id);
     if($stmt->execute()) {
       return true;
     }

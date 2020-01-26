@@ -1,22 +1,27 @@
 <?php 
-  class Database {
-    // DB Params
-    private $host = 'localhost';
-    private $db_name = 'myblog';
-    private $username = 'root';
-    private $password = '';
-    private $conn;
+  class DBConnection {
+    // DB Parameters
+    private $host;
+    private $username;
+    private $password;
+    private $dbname;
+    private $charset;
 
-    // DB Connect
-    public function connect() {
-      $this->conn = null;
+    // DB Connection
+    protected function connectToDB() {
+      $this->host = 'localhost';
+      $this->username = 'root';
+      $this->password = '';
+      $this->dbname = 'myblog';
+      $this->charset = 'utf8mb4';
+
       try { 
-        $this->conn = new PDO('mysql:host=' .$this->host. ';dbname=' .$this->db_name, $this->username, $this->password);
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdoConnection = new PDO('mysql:host=' .$this->host. ';dbname=' .$this->dbname.';charset=' .$this->charset, $this->username, $this->password);
+        $pdoConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdoConnection;
       } catch(PDOException $e) {
         echo 'Connection Error: ' . $e->getMessage();
       }
-      return $this->conn;
     }
   }
 ?>

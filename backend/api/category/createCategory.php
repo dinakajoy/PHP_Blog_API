@@ -2,33 +2,24 @@
   // Headers
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
-  header('Access-Control-Allow-Methods: PUT');
+  header('Access-Control-Allow-Methods: POST');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
 
   include_once '../../config/Database.php';
   include_once '../../models/Category.php';
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
-
-  // Instantiate blog post object
-  $category = new Category($db);
+  $category = new Category();
 
   // Get raw posted data
   $data = json_decode(file_get_contents("php://input"));
+  $name = $data->name;
 
-  // Set ID to UPDATE
-  $category->id = $data->id;
-
-  $category->name = $data->name;
-
-  // Update post
-  if($category->update()) {
+  // Create Category
+  if($category->createCategory($name)) {
     echo json_encode(
-      array('message' => 'Category Updated')
+      array('message' => 'Category Created')
     );
   } else {
     echo json_encode(
-      array('message' => 'Category not updated')
+      array('message' => 'Category Not Created')
     );
   }

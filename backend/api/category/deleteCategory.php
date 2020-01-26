@@ -7,21 +7,11 @@
 
   include_once '../../config/Database.php';
   include_once '../../models/Category.php';
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
-
-  // Instantiate blog post object
-  $category = new Category($db);
-
-  // Get raw posted data
-  $data = json_decode(file_get_contents("php://input"));
-
-  // Set ID to UPDATE
-  $category->id = $data->id;
+  $category = new Category();
+  $id = isset($_GET['id']) ? $_GET['id'] : die();
 
   // Delete post
-  if($category->delete()) {
+  if($category->deleteCategory($id)) {
     echo json_encode(
       array('message' => 'Category deleted')
     );

@@ -19,6 +19,17 @@ a {
 ul {
     list-style-type: none;
 }
+.btn {
+    padding: 10px 30px;
+    background-color: #333;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70%;
+    margin: 0px auto;
+    text-align: center;
+}
 
 /* HEADER STYLES */
 .header {
@@ -60,8 +71,16 @@ ul {
 /* Main Content Styles */
 .container {
     width: 95%;
-    margin: 120px auto;
-    padding: 50px 0px;
+    margin: 140px auto 0px;
+    padding-top: 50px;
+}
+
+.categories, .posts {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.post {
+    margin: 20px 0;
 }
 
 /* FOOTER STYLES */

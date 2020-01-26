@@ -4,16 +4,12 @@
   header('Content-Type: application/json');
 
   require_once '../../config/Database.php';
-  $database = new Database();
-  $db = $database->connect();
-
   require_once '../../models/Post.php';
-  $post = new Post($db);
+  $post = new Post();
   $result = $post->getPosts();
   $num = $result->rowCount();
   if($num > 0) {
     $posts_arr = array();
-    // $posts_arr['data'] = array();
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row);
       $post_item = array(
@@ -29,8 +25,7 @@
     }
     echo json_encode($posts_arr);
   } else {
-    // No Posts
     echo json_encode(
-      array('message' => 'No Posts Found')
+      array('message' => 'No Post Found')
     );
   }

@@ -1,13 +1,16 @@
 # PHP REST API
-> This is a simple PHP REST API from scratch with no framework using HTML, CSS, JavaScript, AJAX, JSON, jQuery, PHP, SQL/MySQL
+> This is a simple REST API built PHP with from scratch with no framework using HTML, CSS, JavaScript, JSON, jQuery, PHP, SQL/MySQL
 
 ## Quick Start
+Clone this repo
+cd into backend to access api
 Import the myblog.sql file, change the params in the config/Database.php file to your own
+Run php -S localhost:5000 to start up dev server after starting up your local web server
+cd into frontend on another terminal window to access the fronend of the application
+Open index.html in your browser
 
 ## App Info
-This app runs locally on port:500.
-To use it, run - 
-  php -S localhost:5000
+This app will still be updated later to integrate authentication and authorization
 
 ### Author
 Odinaka Joy
