@@ -6,6 +6,7 @@ const createPost = (post) => {
     div.className = 'post';
     let a = document.createElement('a');
     a.setAttribute('href', `./postDetail.html?id=${post.id}`);
+    a.style.color = '#333';
     let h3 = document.createElement('h3');
     h3.textContent = post.title;
     let p = document.createElement('p');

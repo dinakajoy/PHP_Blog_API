@@ -20,13 +20,11 @@ ul {
     list-style-type: none;
 }
 .btn {
-    padding: 10px 30px;
     background-color: #333;
     color: #f4f4f4;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 70%;
     margin: 0px auto;
     text-align: center;
 }
@@ -82,8 +80,38 @@ ul {
 .post {
     margin: 20px 0;
 }
-.post a {
-    color: #333;
+.post .spaceout, .post .actions {
+    display: flex;
+    justify-content: space-between;
+}
+.post .actions {
+    margin: 10px 0;
+}
+.post small {
+    color: #558;
+}
+.post .left {
+    text-align: left;
+}
+.post .right {
+    text-align: right;
+}
+.post p {
+    text-align: justify;
+    line-height: 24px;
+}
+.btn--large {
+    padding: 10px 30px;
+    width: 70%;
+}
+.btn--delete {
+    padding: 5px 10px;
+    background-color: rgb(139, 3, 3);
+}
+.btn--small {
+    padding: 5px 10px;
+    background-color: rgb(4, 44, 4);
+    color: #f4f4f4;
 }
 
 /* FOOTER STYLES */

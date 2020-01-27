@@ -10,6 +10,7 @@
   $post = $post->getPost($id);
   if($post) {
     $post_arr = array(
+      'id' => $post->id,
       'title' => $post->title,
       'body' => $post->body,
       'author' => $post->author,
