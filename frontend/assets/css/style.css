@@ -72,10 +72,12 @@ ul {
     margin: 140px auto 0px;
     padding-top: 50px;
 }
-
 .categories, .posts {
     text-align: left;
     margin-bottom: 15px;
+}
+.categories p {
+    margin: 5px 0;
 }
 .post {
     margin: 20px 0;
@@ -101,7 +103,7 @@ ul {
     line-height: 24px;
 }
 .btn--large {
-    padding: 10px 30px;
+    padding: 7px 20px;
     width: 70%;
 }
 .btn--delete {
@@ -113,6 +115,29 @@ ul {
     background-color: rgb(4, 44, 4);
     color: #f4f4f4;
 }
+.input {
+    width: 100%;
+    margin: 30px auto;
+}
+.input label, .input input, .input select, .input textarea, .editPost {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding: 4px 0;
+}
+.editPost {
+    background-color: #333;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+.input input:focus, .input input:hover, .input select:focus, .input select:hover, .input textarea:focus, .input textarea:hover, .editPost:focus  {
+    outline-color: #333;
+}
+.hideOnMobile {
+    display: none;
+}
 
 /* FOOTER STYLES */
 .footer {
@@ -123,11 +148,27 @@ ul {
     width: 100%;
     margin-top: 20px;
 }
-@media all and (max-width: 780px) {
+@media all and (min-width: 600px) {
     .heading h2 {
         font-size: 1.5rem;
     }
     .container {
         width: 80%;
+    }
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 20px;
+    }
+    .hideOnMobile {
+        display: block;
+    }
+}
+@media all and (min-width: 1000px) {
+    .container {
+        width: 70%;
+    }
+    main {
+        grid-gap: 50px;
     }
 }

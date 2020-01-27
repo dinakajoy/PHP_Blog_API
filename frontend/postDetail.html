@@ -15,15 +15,20 @@
       <nav class="nav">
         <ul class="links">
           <li><a href="./">Home</a></li>
-          <li><a href="./addPost.php">Add Post</a></li>
-          <li><a href="./addCategory.php">Add Category</a></li>
+          <li><a href="./addPost.html">Add Post</a></li>
+          <li><a href="./addCategory.html">Add Category</a></li>
         </ul>
       </nav>
     </header>
-
+  
     <main class="container">
       <section class="posts">
         <div id="loadPost" class="post"></div>
+      </section>
+      <section class="categories hideOnMobile">
+        <h2>Categories</h2> 
+        <div id="loadCategories" class="categories"></div>
+        <a class="btn btn--large" href="addCategory.php"> Add Category </a>
       </section>
     </main>
     

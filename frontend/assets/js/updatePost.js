@@ -1,18 +1,17 @@
 const loadPost = document.querySelector('#loadPost');
 let editPost;
 let category_id;
-
+// <input type="hidden" id="id" name="id" value="${post.id}">
 const createPost = (post) => {
   return `
-    <form id="apiformU">
-      <input type="hidden" id="id" name="id" value="${post.id}">
+    <form id="postUpdate"> 
       <div class="input">
         <label for="title">Title</label>
         <input type="text" id="title" name="title" autocomplete="on" required value="${post.title}">
       </div>
       <div class="input">
         <label for="body">Body</label>
-        <textarea id="body" name="body" col="15" row="5" autocomplete="on" required>${post.body}</textarea>
+        <textarea id="body" name="body" cols="30" rows="10" autocomplete="on" required>${post.body}</textarea>
       </div>
       <div class="input">
         <label for="author">Author</label>
@@ -20,39 +19,62 @@ const createPost = (post) => {
       </div>
       <div class="input">
         <select name="category_id" id="category_id" required>
-          <option>-- Select Category --</option>
+          <option value=${post.category_id} selected>${post.category_name}</option>
         </select>
       </div>
-      <button type="submit" id="editPost"> Update Post </button>
+      <button type="submit" id="editPost" class="editPost"> Update Post </button>
     </form>
   `;
 }
 
-const updatePost = async (e) => {
-  e.preventDefault();
-  console.log(e.target);
+const getId = () => {
   let urlParams = new URLSearchParams(window.location.search);
   let id = urlParams.get('id');
-  // const response = await fetch(`http://localhost:5000/api/post/updatePost.php?id=${id}`);
-  // const post = await response.json();
-  // alert(post.message);
-  // window.location.href = './postDetail.html?id=id';
+  return id;
+}
+
+const updatePost = async (e) => {
+  e.preventDefault();
+  let form = document.querySelector("#postUpdate").elements;
+  let formData = {
+    title: form[0].value,
+    body: form[1].value,
+    author: form[2].value,
+    category_id: form[3].value
+  }
+  let id = getId();
+  try {
+    const response = await fetch(`http://localhost:5000/api/post/updatePost.php?id=${id}`, {method: 'PUT', body: JSON.stringify(formData)});
+    if(!response.ok) {
+      throw Error (response.statusText);
+    }
+    const post = await response.json();
+    alert(post.message);
+    window.location.href = `./postDetail.html?id=${id}`;
+  } catch(error) {
+    console.log(error);
+  }
 }
 
 const getCategories = async () => {
-  const response = await fetch('http://localhost:5000/api/category/getCategories.php');
-  const categories = await response.json();
-  categories.forEach(category => {
-      let option = document.createElement('option');
-      option.setAttribute('value', `${category.id}`);
-      option.textContent = category.name;
-      category_id.appendChild(option);
-  })
+  try {
+    const response = await fetch('http://localhost:5000/api/category/getCategories.php');
+    if(!response.ok) {
+      throw Error (response.statusText);
+    }
+    const categories = await response.json();
+    categories.forEach(category => {
+      let p = document.createElement('p');
+      p.textContent = category.name;
+      loadCategories.appendChild(p);
+    })
+  } catch(error) {
+    console.log(error);
+  }
 }
 
 const getPost = async () => {
-  let urlParams = new URLSearchParams(window.location.search);
-  let id = urlParams.get('id');
+  let id = getId();
   const response = await fetch(`http://localhost:5000/api/post/getPost.php?id=${id}`);
   const post = await response.json();
   loadPost.innerHTML = createPost(post);
