@@ -6,12 +6,11 @@
     public function getCategories() {
       $query = 'SELECT
         id,
-        name,
-        created_at
+        name
       FROM
         ' . $this->table . '
       ORDER BY
-        created_at DESC';
+        id DESC';
       $stmt = $this->connectToDB()->prepare($query);
       if($stmt->execute()) {
         return $stmt;

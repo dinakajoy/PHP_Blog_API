@@ -41,35 +41,33 @@ ul {
     z-index: 1;
     margin-bottom: 20px;
 }
-.heading {
+.header--title {
     border-bottom: 2px solid #ccc;
     padding-bottom: 20px;
     margin-bottom: 5px;
-}
-.heading h2 {
     font-size: 1.2rem;
 }
 .nav {
     padding-top: 10px;
     margin-top: 5px;
 }
-.links {
+.nav--links {
     display: flex;
     text-align: center;
     justify-content: space-around;
 }
-.links a {
+.nav--links a {
     color: #fff;
 }
-.links a:hover {
+.nav--links a:hover {
     text-decoration: underline;
     font-weight: bold;
 }
 
 /* Main Content Styles */
 .container {
-    width: 95%;
-    margin: 140px auto 0px;
+    width: 90%;
+    margin: 140px auto 20px;
     padding-top: 50px;
 }
 .categories, .posts {
@@ -138,6 +136,14 @@ ul {
 .hideOnMobile {
     display: none;
 }
+.fa-pencil-square-o {
+    color: #333;
+    font-size: 22px;
+}
+.editCategory {
+    display: flex;
+    justify-content: space-between;
+}
 
 /* FOOTER STYLES */
 .footer {
@@ -149,11 +155,15 @@ ul {
     margin-top: 20px;
 }
 @media all and (min-width: 600px) {
+    .links {
+        width: 60%;
+        margin: 0 auto;
+    }
     .heading h2 {
         font-size: 1.5rem;
     }
     .container {
-        width: 80%;
+        width: 90%;
     }
     main {
         display: grid;
@@ -166,9 +176,12 @@ ul {
 }
 @media all and (min-width: 1000px) {
     .container {
-        width: 70%;
+        width: 80%;
     }
     main {
         grid-gap: 50px;
+    }
+    .links {
+        width: 40%;
     }
 }

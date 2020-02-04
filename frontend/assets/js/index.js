@@ -1,63 +1,39 @@
-const loadPosts = document.querySelector('#loadPosts');
-const loadCategories = document.querySelector('#loadCategories');
+import { getPosts } from './functions/posts.js';
+import { formatCategories } from './functions/category.js';
+ 
+const posts = document.querySelector('#posts');
 
-const createPost = (post) => {
-    let div = document.createElement('div');
-    div.className = 'post';
-    let a = document.createElement('a');
-    a.setAttribute('href', `./postDetail.html?id=${post.id}`);
-    a.style.color = '#333';
-    let h3 = document.createElement('h3');
-    h3.textContent = post.title;
-    let p = document.createElement('p');
-    if(post.body.length <= 40) {
-        p.textContent = `${post.body}`;
-    } else {
-        p.textContent = `${post.body.slice(0, 100)}`;
-        let small = document.createElement('small');
-        small.textContent = ' read more...';
-        small.style.color = '#888';
-        p.appendChild(small);
-    }
-    div.appendChild(a);
-    a.appendChild(h3);
-    a.appendChild(p);
-    loadPosts.appendChild(div);
+const formatPosts = (post) => {
+  let div = document.createElement('div');
+  div.className = 'post';
+  let a = document.createElement('a');
+  a.setAttribute('href', `./postDetail.html?id=${post.id}`);
+  a.style.color = '#333';
+  let h3 = document.createElement('h3');
+  h3.textContent = post.title;
+  let p = document.createElement('p');
+  if(post.body.length <= 40) {
+    p.textContent = `${post.body}`;
+  } else {
+    p.textContent = `${post.body.slice(0, 100)}`;
+    let small = document.createElement('small');
+    small.textContent = ' read more...';
+    small.style.color = '#888';
+    p.appendChild(small);
+  }
+  div.appendChild(a);
+  a.appendChild(h3);
+  a.appendChild(p);
+  posts.appendChild(div);
 }
-
-const getPosts = async () => {
-    try {
-        const response = await fetch('http://localhost:5000/api/post/getPosts.php');
-        if(!response.ok) {
-          throw Error (response.statusText);
-        }
-        const posts = await response.json();
-        posts.forEach(post => {
-            createPost(post);
-        })
-    } catch(error) {
-        console.log(error);
-    }   
-}
-
-const getCategories = async () => {
-    try {
-        const response = await fetch('http://localhost:5000/api/category/getCategories.php');
-        if(!response.ok) {
-          throw Error (response.statusText);
-        }
-        const categories = await response.json();
-        categories.forEach(category => {
-            let p = document.createElement('p');
-            p.textContent = category.name;
-            loadCategories.appendChild(p);
-        })
-    } catch(error) {
-        console.log(error);
-    }
+const loadPosts = async () => {
+  const posts = await getPosts();
+  posts.forEach(post => {
+    formatPosts(post);
+  })
 }
 
 window.addEventListener('load', () => {
-    getPosts();
-    getCategories();
+  loadPosts();
+  formatCategories();
 })

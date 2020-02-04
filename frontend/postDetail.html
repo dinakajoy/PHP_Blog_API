@@ -9,11 +9,11 @@
   </head>
   <body>
     <header class="header">
-      <div class="heading">
+      <div class="header--title">
         <h1>A SIMPLE PHP REST API DEMO</h1>
       </div>
       <nav class="nav">
-        <ul class="links">
+        <ul class="nav--links">
           <li><a href="./">Home</a></li>
           <li><a href="./addPost.html">Add Post</a></li>
           <li><a href="./addCategory.html">Add Category</a></li>
@@ -23,11 +23,11 @@
   
     <main class="container">
       <section class="posts">
-        <div id="loadPost" class="post"></div>
+        <div id="post" class="post"></div>
       </section>
       <section class="categories hideOnMobile">
         <h2>Categories</h2> 
-        <div id="loadCategories" class="categories"></div>
+        <div id="categories" class="categories"></div>
         <a class="btn btn--large" href="addCategory.php"> Add Category </a>
       </section>
     </main>
@@ -35,6 +35,6 @@
     <footer class="footer">
       <small>Copyright &copy; 2019. Designed By odinaka-joy</small>
     </footer>
-    <script src="./assets/js/postDetail.js"></script>
+    <script src="./assets/js/postDetail.js" type="module"></script>
   </body>
 </html>

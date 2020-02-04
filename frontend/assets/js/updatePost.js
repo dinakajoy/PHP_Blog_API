@@ -1,8 +1,9 @@
-const loadPost = document.querySelector('#loadPost');
-let editPost;
-let category_id;
-// <input type="hidden" id="id" name="id" value="${post.id}">
-const createPost = (post) => {
+import { getPost, updatePost } from './functions/posts.js';
+import { getCategories, formatCategories } from './functions/category.js';
+
+const postSelector = document.querySelector('#loadPost');
+
+const formatPostToUpdate = (post) => {
   return `
     <form id="postUpdate"> 
       <div class="input">
@@ -27,64 +28,26 @@ const createPost = (post) => {
   `;
 }
 
-const getId = () => {
-  let urlParams = new URLSearchParams(window.location.search);
-  let id = urlParams.get('id');
-  return id;
+const formatCategoryOption = async () => {
+  const categories = await getCategories();
+  categories.forEach(category => {
+    let option = document.createElement('option');
+    option.setAttribute('value', `${category.id}`);
+    option.textContent = category.name;
+    const category_id = document.querySelector('#category_id');
+    category_id.appendChild(option);
+  })
 }
 
-const updatePost = async (e) => {
-  e.preventDefault();
-  let form = document.querySelector("#postUpdate").elements;
-  let formData = {
-    title: form[0].value,
-    body: form[1].value,
-    author: form[2].value,
-    category_id: form[3].value
-  }
-  let id = getId();
-  try {
-    const response = await fetch(`http://localhost:5000/api/post/updatePost.php?id=${id}`, {method: 'PUT', body: JSON.stringify(formData)});
-    if(!response.ok) {
-      throw Error (response.statusText);
-    }
-    const post = await response.json();
-    alert(post.message);
-    window.location.href = `./postDetail.html?id=${id}`;
-  } catch(error) {
-    console.log(error);
-  }
+const loadPostToUpdate = async () => {
+  const post = await getPost();
+  postSelector.innerHTML = formatPostToUpdate(post);
+  formatCategoryOption();
 }
 
-const getCategories = async () => {
-  try {
-    const response = await fetch('http://localhost:5000/api/category/getCategories.php');
-    if(!response.ok) {
-      throw Error (response.statusText);
-    }
-    const categories = await response.json();
-    categories.forEach(category => {
-      let p = document.createElement('p');
-      p.textContent = category.name;
-      loadCategories.appendChild(p);
-    })
-  } catch(error) {
-    console.log(error);
-  }
-}
-
-const getPost = async () => {
-  let id = getId();
-  const response = await fetch(`http://localhost:5000/api/post/getPost.php?id=${id}`);
-  const post = await response.json();
-  loadPost.innerHTML = createPost(post);
-  getCategories();
-
-  editPost = document.querySelector('#editPost');
-  category_id = document.querySelector('#category_id');
+window.addEventListener('load', async () => {
+  await loadPostToUpdate();
+  await formatCategories();
+  await formatCategoryOption();
   editPost.addEventListener('click', updatePost);
-}
-
-window.addEventListener('load', () => {
-  getPost();
 })

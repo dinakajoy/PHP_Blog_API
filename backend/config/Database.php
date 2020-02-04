@@ -9,13 +9,6 @@
 
     // DB Connection
     protected function connectToDB() {
-      // $config = parse_ini_file('../config.ini');
-      // $this->host = $config['host'];
-      // $this->username = $config['username'];
-      // $this->password = $config['password'];
-      // $this->dbname = $config['dbname'];
-      // $this->charset = $config['charset'];
-
       $this->host = 'localhost';
       $this->username = 'root';
       $this->password = '';
