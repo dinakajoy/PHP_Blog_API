@@ -13,12 +13,11 @@ Open index.html in your browser
 ## App Info
 This app will be updated later to integrate authentication and authorization
 
-### Author
-Odinaka Joy
-(http://www.odinaka-joy.com)
+## Author
+[Odinaka Joy](http://dinakajoy.com)
 
-### Version
+## Version
 1.0
 
-### License
+## License
 This project is licensed under the MIT License
